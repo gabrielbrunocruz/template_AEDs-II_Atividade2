@@ -57,4 +57,51 @@ public class Pilha<E> {
 		// TODO
 		return null;
 	}
+
+//1
+	public void concatenar(Pilha<E> pilha) {
+    if (pilha == null || pilha.vazia()) {
+        return;
+    }
+    Celula<E> atual = pilha.topo;
+
+    while (atual.getProximo() != null) {
+        atual = atual.getProximo();
+    }
+
+    atual.setProximo(this.topo);
+
+    this.topo = pilha.topo;
+}
+
+//2
+public int obterNumeroItens() {
+    int contador = 0;
+    Celula<E> atual = topo;
+    
+    while (atual != fundo) {
+        contador++;
+        atual = atual.getProximo();
+    }
+    
+    return contador;
+}
+//3
+public void inverter() {
+    if (vazia()) {
+        return; 
+    }
+
+    Celula<E> anterior = fundo; 
+    Celula<E> atual = topo;
+    Celula<E> proximo;
+
+    while (atual != fundo) {
+        proximo = atual.getProximo(); 
+        atual.setProximo(anterior);   
+        anterior = atual;             
+        atual = proximo;              
+    }
+    topo = anterior;
+}
 }
